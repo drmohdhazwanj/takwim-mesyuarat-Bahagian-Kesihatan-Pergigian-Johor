@@ -12,29 +12,35 @@
       background: #f4f6f8;
     }
 
-    header {
-      background: #0f2a44;
-      color: white;
-      padding: 20px 20px 20px 110px;
-      position: relative;
-    }
+    .site-header {
+  background: #0f2a44;
+  color: white;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
 
-    header img {
-      position: absolute;
-      left: 20px;
-      top: 15px;
-      height: 70px;
-    }
+.site-header .logo {
+  height: 60px;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
+.header-text {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
 
-    header p {
-      margin: 6px 0 0;
-      font-size: 15px;
-    }
+.header-text h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.header-text p {
+  margin: 4px 0 0;
+  font-size: 14px;
+}
 
     .bar-arahan {
       background: #f1f5f9;
@@ -102,10 +108,16 @@
 
 <body>
 
-<header>
-  <img src="logo-kerajaan.png" alt="Logo Kerajaan Malaysia">
-  <h1>TAKWIM MESYUARAT 2026</h1>
-  <p>Bahagian Kesihatan Pergigian<br>Jabatan Kesihatan Negeri Johor</p>
+<header class="site-header">
+  <img src="Logo Kerajaan Malaysia.png" alt="Logo Kerajaan Malaysia" class="logo">
+
+  <div class="header-text">
+    <h1>TAKWIM MESYUARAT 2026</h1>
+    <p>
+      Bahagian Kesihatan Pergigian<br>
+      Jabatan Kesihatan Negeri Johor
+    </p>
+  </div>
 </header>
 
 <div class="bar-arahan">
@@ -196,3 +208,4 @@ function render(data) {
 
 </body>
 </html>
+

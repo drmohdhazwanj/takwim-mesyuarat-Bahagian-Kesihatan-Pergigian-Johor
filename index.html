@@ -53,6 +53,22 @@ body {
   text-align: center;
 }
 
+/* PENGUMUMAN */
+.pengumuman {
+  max-width: 1000px;
+  margin: 12px auto;
+  padding: 14px 16px;
+  background: #fff8e1;
+  border-left: 6px solid #f4b400;
+  font-size: 14px;
+}
+
+.pengumuman strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
 /* TARIKH KEMASKINI */
 .tarikh-kemaskini {
   max-width: 1000px;
@@ -148,20 +164,6 @@ body {
     text-align: center;
   }
 }
-.pengumuman {
-  max-width: 1000px;
-  margin: 12px auto;
-  padding: 14px 16px;
-  background: #fff8e1;
-  border-left: 6px solid #f4b400;
-  font-size: 14px;
-}
-
-.pengumuman strong {
-  display: block;
-  font-size: 15px;
-  margin-bottom: 4px;
-}
 
 /* PRINT MODE */
 @media print {
@@ -171,6 +173,7 @@ body {
 
   .filters,
   .bar-arahan,
+  .pengumuman,
   button {
     display: none;
   }
@@ -224,9 +227,7 @@ di talian <strong>010-6628023</strong> atau emel
 <a href="mailto:drmohdhazwan.j@moh.gov.my">drmohdhazwan.j@moh.gov.my</a>
 </div>
 
-  <div class="pengumuman" id="mesyuaratSeterusnya"></div>
-
-
+<div class="pengumuman" id="mesyuaratSeterusnya"></div>
 <div class="tarikh-kemaskini" id="tarikhKemaskini"></div>
 
 <div class="container">
@@ -259,9 +260,52 @@ fetch('takwim-2026.json')
       'Tarikh kemaskini terakhir: ' + data._meta.tarikh_kemaskini;
   }
 
+  paparMesyuaratSeterusnya(DATA);
   initFilters();
   render(DATA);
 });
+
+function paparMesyuaratSeterusnya(data) {
+  const hariIni = new Date();
+  let senarai = [];
+
+  Object.keys(data).filter(k => k !== '_meta').forEach(bulan => {
+    data[bulan].forEach(m => {
+      const tarikh = ekstrakTarikh(m.date);
+      if (tarikh && tarikh >= hariIni) {
+        senarai.push({ ...m, tarikhObj: tarikh });
+      }
+    });
+  });
+
+  if (senarai.length === 0) return;
+
+  senarai.sort((a, b) => a.tarikhObj - b.tarikhObj);
+  const next = senarai[0];
+
+  document.getElementById('mesyuaratSeterusnya').innerHTML = `
+    <strong>📢 Mesyuarat Terdekat</strong>
+    ${next.title}<br>
+    🗓️ ${next.date}<br>
+    🏢 ${next.urusetia}
+  `;
+}
+
+function ekstrakTarikh(teks) {
+  const padanan = teks.match(/(\d{1,2}) (\w+) (\d{4})/);
+  if (!padanan) return null;
+
+  const bulanMap = {
+    Januari: 0, Februari: 1, Mac: 2, April: 3, Mei: 4, Jun: 5,
+    Julai: 6, Ogos: 7, September: 8, Oktober: 9, November: 10, Disember: 11
+  };
+
+  return new Date(
+    parseInt(padanan[3]),
+    bulanMap[padanan[2]],
+    parseInt(padanan[1])
+  );
+}
 
 function initFilters() {
   const bulan = document.getElementById('bulan');
@@ -319,4 +363,3 @@ function render(data) {
 
 </body>
 </html>
-

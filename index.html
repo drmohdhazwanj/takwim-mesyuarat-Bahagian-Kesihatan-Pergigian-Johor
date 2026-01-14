@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <title>Takwim Mesyuarat 2026 | BKPJ JKN Johor</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Takwim Mesyuarat 2026 | BKPJ JKN Johor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f4f6f8;
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f6f8;
+}
 
-    .site-header {
+/* HEADER */
+.site-header {
   background: #0f2a44;
   color: white;
   padding: 20px;
@@ -22,7 +23,7 @@
 }
 
 .site-header .logo {
-  height: 60px;
+  height: 48px;
 }
 
 .header-text {
@@ -42,115 +43,186 @@
   font-size: 14px;
 }
 
-    .bar-arahan {
-      background: #f1f5f9;
-      color: #0f2a44;
-      padding: 10px 16px;
-      border-bottom: 2px solid #0f2a44;
-      font-size: 14px;
-      text-align: center;
-    }
+/* BAR ARAHAN */
+.bar-arahan {
+  background: #f1f5f9;
+  color: #0f2a44;
+  padding: 10px 16px;
+  border-bottom: 2px solid #0f2a44;
+  font-size: 14px;
+  text-align: center;
+}
 
-    .container {
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 0 16px;
-    }
+/* CONTAINER */
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
 
-    .filters input,
-    .filters select {
-      padding: 8px;
-      margin-right: 6px;
-      margin-bottom: 10px;
-    }
+/* FILTER */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
 
-    .month {
-      background: white;
-      margin-bottom: 16px;
-      border-radius: 8px;
-      overflow: hidden;
-    }
+.filters input,
+.filters select,
+.filters button {
+  padding: 8px;
+  font-size: 14px;
+}
 
-    .month-header {
-      background: #1f4d7a;
-      color: white;
-      padding: 10px 14px;
-      font-weight: bold;
-    }
+.filters button {
+  background: #1f4d7a;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
 
-    .meeting {
-      padding: 12px 14px;
-      border-top: 1px solid #eee;
-    }
+.filters button:hover {
+  background: #163a5a;
+}
 
-    .meeting-title {
-      font-weight: bold;
-    }
+/* MONTH CARD */
+.month {
+  background: white;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
 
-    .meeting-meta {
-      font-size: 13px;
-      color: #555;
-    }
+.month-header {
+  background: #1f4d7a;
+  color: white;
+  padding: 10px 14px;
+  font-weight: bold;
+}
 
-    @media (max-width: 600px) {
-      header {
-        padding-left: 20px;
-        text-align: center;
-      }
-      header img {
-        position: static;
-        display: block;
-        margin: 0 auto 10px;
-      }
-    }
-  </style>
+.meeting {
+  padding: 12px 14px;
+  border-top: 1px solid #eee;
+}
+
+.meeting-title {
+  font-weight: bold;
+}
+
+.meeting-meta {
+  font-size: 13px;
+  color: #555;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .site-header {
+    justify-content: center;
+    padding-top: 70px;
+  }
+
+  .site-header .logo {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .header-text {
+    position: static;
+    transform: none;
+  }
+}
+
+/* PRINT MODE */
+@media print {
+  body {
+    background: white;
+  }
+
+  .filters,
+  .bar-arahan,
+  button {
+    display: none;
+  }
+
+  .site-header {
+    background: white;
+    color: black;
+    border-bottom: 2px solid #000;
+  }
+
+  .site-header .logo {
+    height: 40px;
+  }
+
+  .month {
+    page-break-inside: avoid;
+    border: 1px solid #000;
+  }
+
+  .month-header {
+    background: #ddd;
+    color: black;
+  }
+
+  .meeting {
+    border-top: 1px solid #999;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <header class="site-header">
   <img src="logo-kerajaan.png" alt="Logo Kerajaan Malaysia" class="logo">
-
   <div class="header-text">
     <h1>TAKWIM MESYUARAT 2026</h1>
-    <p>
-      Bahagian Kesihatan Pergigian<br>
-      Jabatan Kesihatan Negeri Johor
-    </p>
+    <p>Bahagian Kesihatan Pergigian<br>Jabatan Kesihatan Negeri Johor</p>
   </div>
 </header>
 
 <div class="bar-arahan">
-  Sekiranya terdapat perubahan tarikh, mohon maklumkan kepada
-  <strong>Dr. Mohamad Hazwan bin Jamaludin</strong>
-  di talian <strong>010-6628023</strong> atau emel di
-  <a href="mailto:drmohdhazwan.j@moh.gov.my">drmohdhazwan.j@moh.gov.my</a>
+Sekiranya terdapat perubahan tarikh, mohon maklumkan kepada
+<strong>Dr. Mohamad Hazwan bin Jamaludin</strong>
+di talian <strong>010-6628023</strong> atau emel
+<a href="mailto:drmohdhazwan.j@moh.gov.my">drmohdhazwan.j@moh.gov.my</a>
 </div>
 
 <div class="container">
-  <div class="filters">
-    <input type="text" placeholder="Cari mesyuarat…" oninput="applyFilters()">
-    <select id="bulan" onchange="applyFilters()">
-      <option>Semua Bulan</option>
-    </select>
-    <select id="urusetia" onchange="applyFilters()">
-      <option>Semua Urusetia</option>
-    </select>
-  </div>
 
-  <div id="takwim"></div>
+<div class="filters">
+  <input type="text" placeholder="Cari mesyuarat…" oninput="applyFilters()">
+  <select id="bulan" onchange="applyFilters()">
+    <option>Semua Bulan</option>
+  </select>
+  <select id="urusetia" onchange="applyFilters()">
+    <option>Semua Urusetia</option>
+  </select>
+  <button onclick="window.print()">Cetak Takwim</button>
+</div>
+
+<div id="takwim"></div>
+
 </div>
 
 <script>
 let DATA = {};
 
 fetch('takwim-2026.json')
-  .then(r => r.json())
-  .then(data => {
-    DATA = data;
-    initFilters();
-    render(DATA);
-  });
+.then(r => r.json())
+.then(data => {
+  DATA = data;
+  initFilters();
+  render(DATA);
+});
 
 function initFilters() {
   const bulan = document.getElementById('bulan');
@@ -194,10 +266,10 @@ function render(data) {
 
     data[b].forEach(m => {
       html += `
-        <div class="meeting">
-          <div class="meeting-title">${m.title}</div>
-          <div class="meeting-meta">${m.date} · ${m.urusetia}</div>
-        </div>`;
+      <div class="meeting">
+        <div class="meeting-title">${m.title}</div>
+        <div class="meeting-meta">${m.date} · ${m.urusetia}</div>
+      </div>`;
     });
 
     html += '</div>';
@@ -208,6 +280,3 @@ function render(data) {
 
 </body>
 </html>
-
-
-

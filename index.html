@@ -53,6 +53,16 @@ body {
   text-align: center;
 }
 
+/* TARIKH KEMASKINI */
+.tarikh-kemaskini {
+  max-width: 1000px;
+  margin: 8px auto 0;
+  padding: 0 16px;
+  font-size: 13px;
+  color: #555;
+  text-align: right;
+}
+
 /* CONTAINER */
 .container {
   max-width: 1000px;
@@ -86,7 +96,7 @@ body {
   background: #163a5a;
 }
 
-/* MONTH CARD */
+/* MONTH */
 .month {
   background: white;
   margin-bottom: 16px;
@@ -132,6 +142,10 @@ body {
   .header-text {
     position: static;
     transform: none;
+  }
+
+  .tarikh-kemaskini {
+    text-align: center;
   }
 }
 
@@ -196,6 +210,8 @@ di talian <strong>010-6628023</strong> atau emel
 <a href="mailto:drmohdhazwan.j@moh.gov.my">drmohdhazwan.j@moh.gov.my</a>
 </div>
 
+<div class="tarikh-kemaskini" id="tarikhKemaskini"></div>
+
 <div class="container">
 
 <div class="filters">
@@ -220,6 +236,12 @@ fetch('takwim-2026.json')
 .then(r => r.json())
 .then(data => {
   DATA = data;
+
+  if (data._meta && data._meta.tarikh_kemaskini) {
+    document.getElementById('tarikhKemaskini').innerText =
+      'Tarikh kemaskini terakhir: ' + data._meta.tarikh_kemaskini;
+  }
+
   initFilters();
   render(DATA);
 });
@@ -228,7 +250,7 @@ function initFilters() {
   const bulan = document.getElementById('bulan');
   const urusetia = document.getElementById('urusetia');
 
-  Object.keys(DATA).forEach(b => {
+  Object.keys(DATA).filter(k => k !== '_meta').forEach(b => {
     bulan.innerHTML += `<option>${b}</option>`;
     DATA[b].forEach(m => {
       if (![...urusetia.options].some(o => o.value === m.urusetia)) {
@@ -244,7 +266,7 @@ function applyFilters() {
   const uru = document.getElementById('urusetia').value;
   const out = {};
 
-  Object.keys(DATA).forEach(b => {
+  Object.keys(DATA).filter(k => k !== '_meta').forEach(b => {
     if (bulan !== 'Semua Bulan' && b !== bulan) return;
     const list = DATA[b].filter(m =>
       (!key || m.title.toLowerCase().includes(key)) &&
@@ -260,7 +282,7 @@ function render(data) {
   const el = document.getElementById('takwim');
   el.innerHTML = '';
 
-  Object.keys(data).forEach(b => {
+  Object.keys(data).filter(k => k !== '_meta').forEach(b => {
     let html = `<div class="month">
       <div class="month-header">${b} 2026</div>`;
 
